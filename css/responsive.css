@@ -1,0 +1,188 @@
+/* Tablet */
+@media (max-width: 1024px) {
+  .hero-scene-inner { grid-template-columns: 1fr; gap: 40px; }
+  .company-grid { grid-template-columns: repeat(3, 1fr); }
+  .life-perks { grid-template-columns: repeat(3, 1fr); }
+  .about-grid { grid-template-columns: 1fr 1fr; }
+  .about-showcase { grid-template-columns: 1fr; gap: 40px; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .sc-img { height: 140px; }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .team-culture { grid-template-columns: 1fr; }
+  .team-culture-stats { grid-template-columns: repeat(2, 1fr); }
+  .team-culture-img img { height: 200px; }
+  .jobs-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .section-header h2 { font-size: 2.2rem; }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .cursor, #cursor-blur { display: none; }
+  body { cursor: auto; }
+
+  .nav-links {
+    position: fixed;
+    top: 72px; left: 0; right: 0;
+    background: var(--nav-bg);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 24px;
+    gap: 16px;
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition);
+    border-bottom: 1px solid var(--card-border);
+  }
+
+  .nav-links.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .hamburger { display: flex; }
+
+  .hero-scene-inner { grid-template-columns: 1fr; gap: 32px; padding: 0 24px; }
+  .hero-scene-tagline { font-size: 1rem; }
+  .hero-scene-actions { flex-direction: column; }
+  .hero-scene-scroll { display: none; }
+  .company-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .life-grid { grid-template-columns: 1fr; }
+  .life-card-tall { grid-row: span 1; min-height: 240px; }
+  .life-card { min-height: 180px; }
+  .life-perks { grid-template-columns: repeat(3, 1fr); }
+  .life-card-overlay { padding: 16px; }
+  .life-card-overlay h4 { font-size: 1rem; }
+  .life-card-overlay p { font-size: 0.8rem; max-width: 100%; }
+
+  .about-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr; }
+  .jobs-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+
+  .section-header h2 { font-size: 1.8rem; }
+
+  .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .stat-img { height: 120px; }
+  .stat-body .stat-number { font-size: 2.5rem; }
+  .stat-suffix { font-size: 1.4rem; }
+
+  .form-row { grid-template-columns: 1fr; }
+  .newsletter-form { flex-direction: column; }
+
+  .footer-bottom { flex-direction: column; text-align: center; }
+
+  .showcase-image { margin-top: 20px; }
+  .benefit-cards { grid-template-columns: 1fr; }
+  .benefit-img { height: 100px; }
+
+  .video-wrapper { padding: 0; }
+
+  .testimonial-card { padding: 24px 16px; }
+  .testimonial-card > p { font-size: 1rem; }
+
+  .job-filters { overflow-x: auto; flex-wrap: nowrap; padding-bottom: 8px; -webkit-overflow-scrolling: touch; }
+  .filter-btn { white-space: nowrap; }
+
+  .contact-form { padding: 24px; }
+
+  .newsletter-box { padding: 40px 24px; }
+}
+
+/* Timeline responsive */
+@media (max-width: 768px) {
+  .timeline::before { left: 20px; }
+  .timeline-item:nth-child(odd),
+  .timeline-item:nth-child(even) { padding: 0 0 0 50px; flex-direction: row !important; }
+  .timeline-dot { left: 20px; }
+  .timeline-item:nth-child(odd) .timeline-content::before,
+  .timeline-item:nth-child(even) .timeline-content::before { left: -11px; right: auto; border-right: none; border-top: none; border-bottom: 1px solid var(--card-border); border-left: 1px solid var(--card-border); }
+  .timeline-content { padding: 20px; }
+  .partners-logos { gap: 30px; }
+  .partner-logo { font-size: 1.1rem; }
+  .dashboard { grid-template-columns: 1fr; }
+  .dash-substats { grid-template-columns: 1fr; gap: 12px; }
+  .dash-stat.huge .dash-number { font-size: 2.8rem; }
+  .dash-number.currency { font-size: 1.8rem; }
+}
+
+/* New sections responsive */
+@media (max-width: 768px) {
+  .why-grid { grid-template-columns: 1fr; gap: 40px; }
+  .awards-grid { grid-template-columns: 1fr 1fr; }
+  .offices-grid { grid-template-columns: 1fr 1fr; }
+  .press-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* Inside gallery responsive */
+@media (max-width: 768px) {
+  .inside-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .hero-scene-icon { width: 40px; height: 40px; font-size: 0.9rem; }
+  .hero-scene-logo h1 { font-size: 1.4rem; }
+  .hero-scene-logo span { font-size: 0.65rem; }
+  .hero-scene-tagline { font-size: 0.9rem; }
+  .hero-scene-logos { gap: 16px; flex-wrap: wrap; }
+  .hero-scene-logos img { width: 20px; height: 20px; }
+  .hsi-mockup { max-width: 100%; }
+  .hsi-mockup-row { padding: 10px 16px; }
+  .hsi-mockup-row strong { font-size: 0.8rem; }
+  .hsi-mockup-row span { font-size: 0.7rem; }
+  .hsi-mockup-badge { font-size: 0.6rem !important; padding: 2px 8px; }
+  .sc-img { height: 120px; }
+  .sc-body { padding: 0 16px 16px; }
+  .sc-body h3 { font-size: 1.05rem; }
+  .sc-body p { font-size: 0.85rem; }
+  .sc-meta span { font-size: 0.65rem; padding: 3px 10px; }
+  .company-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .company-card { padding: 20px 12px 16px; }
+  .company-logo { width: 44px; height: 44px; }
+  .company-card h4 { font-size: 0.85rem; }
+  .company-tag { font-size: 0.65rem; padding: 2px 8px; }
+  .hs-feed-header { font-size: 0.65rem; padding: 12px 16px; }
+  .hs-feed-body { padding: 8px 16px; }
+  .feed-item { padding: 8px 0; }
+  .feed-item img { width: 28px; height: 28px; }
+  .feed-item strong { font-size: 0.78rem; }
+  .feed-item span { font-size: 0.7rem; }
+  .hs-feed-footer { padding: 10px 16px 12px; }
+  .hs-feed-logos img { width: 16px; height: 16px; }
+  .hs-quote-card { padding: 16px 18px; }
+  .hs-quote-card p { font-size: 0.85rem; }
+  .container { padding: 0 16px; }
+  .section-header { margin-bottom: 40px; }
+  .section-header h2 { font-size: 1.5rem; }
+  .about-card, .service-card, .job-card { padding: 24px; }
+  .team-img { height: 220px; }
+  .team-grid { grid-template-columns: 1fr; }
+  .team-culture-stats { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr; gap: 16px; }
+  .stat-img { height: 100px; }
+  .stat-body .stat-number { font-size: 2.2rem; }
+  .stat-body { padding: 16px 16px 20px; }
+  .awards-grid { grid-template-columns: 1fr; }
+  .offices-grid { grid-template-columns: 1fr; }
+  .press-grid { grid-template-columns: 1fr; }
+  .inside-grid { grid-template-columns: 1fr; }
+  .dash-thumb { height: 70px; }
+  .dash-content { padding: 20px; }
+  .dash-card-body { padding: 12px 16px 16px; }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+  .service-card:hover,
+  .job-card:hover,
+  .team-card:hover,
+  .about-card:hover { transform: none; }
+  .cursor, #cursor-blur { display: none; }
+  body { cursor: auto; }
+}
