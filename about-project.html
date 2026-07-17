@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Project Information - TechHire IT Solutions | Frontend Web Development Competition 2026">
+  <title>Project Info | TechHire IT Solutions</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>TH</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    :root { --pi-primary: #8b5cf6; --pi-secondary: #06b6d4; --pi-accent: #f43f5e; --pi-gold: #fbbf24; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--primary); color: var(--text-primary); line-height: 1.7; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    .pi-container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--primary); }
+    ::-webkit-scrollbar-thumb { background: var(--gradient-1); border-radius: 3px; }
+
+    .pi-hero {
+      min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center;
+      position: relative; overflow: hidden; padding: 120px 24px 60px;
+      background: linear-gradient(135deg, var(--primary) 0%, #1a1040 50%, #0f0a2e 100%);
+    }
+    .pi-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(139,92,246,0.15) 0%, transparent 60%),
+                  radial-gradient(circle at 70% 50%, rgba(6,182,212,0.1) 0%, transparent 60%);
+    }
+    .pi-hero-content { position: relative; z-index: 1; }
+    .pi-hero-badge {
+      display: inline-block; padding: 8px 24px; border-radius: 50px;
+      background: linear-gradient(135deg, var(--pi-primary), var(--pi-secondary));
+      font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px;
+    }
+    .pi-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 16px; }
+    .pi-hero h1 span { background: linear-gradient(135deg, var(--pi-primary), var(--pi-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .pi-hero p { color: var(--text-secondary); font-size: 1.15rem; max-width: 600px; margin: 0 auto 32px; }
+    .pi-hero-meta { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; }
+    .pi-hero-meta span { display: flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 14px; }
+
+    .pi-section { padding: 80px 0; position: relative; }
+    .pi-section:nth-child(even) { background: rgba(139, 92, 246, 0.03); }
+    .pi-section-title {
+      font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 40px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .pi-section-title .num {
+      width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--pi-primary), var(--pi-secondary));
+    }
+    .pi-section-title::after { content: ''; flex: 1; height: 1px; background: var(--card-border); }
+    .pi-card {
+      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius);
+      padding: 32px; margin-bottom: 24px; transition: var(--transition);
+    }
+    .pi-card:hover { border-color: var(--pi-primary); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .pi-card h3 { font-family: 'Space Grotesk', sans-serif; margin-bottom: 12px; color: var(--pi-primary); }
+    .pi-card p, .pi-card li { color: var(--text-secondary); }
+    .pi-blockquote {
+      border-left: 3px solid var(--pi-primary); padding: 16px 24px; margin: 16px 0;
+      background: rgba(139,92,246,0.05); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-style: italic; color: var(--text-secondary);
+    }
+
+    .pi-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .pi-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .pi-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .pi-list li { display: flex; align-items: center; gap: 10px; color: var(--text-secondary); padding: 10px 16px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-sm); }
+    .pi-list li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gradient-1); flex-shrink: 0; }
+
+    .pi-table-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--card-border); }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 14px 20px; text-align: left; border-bottom: 1px solid var(--card-border); }
+    th { background: rgba(139,92,246,0.1); font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: var(--pi-primary); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+    td { color: var(--text-secondary); }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(139,92,246,0.03); }
+
+    .pi-tech { display: flex; flex-wrap: wrap; gap: 12px; }
+    .pi-tech span {
+      padding: 8px 20px; border-radius: 50px; font-size: 13px; font-weight: 600;
+      border: 1px solid var(--card-border); background: var(--card-bg); cursor: default;
+      transition: var(--transition);
+    }
+    .pi-tech span:hover { border-color: var(--pi-primary); background: rgba(139,92,246,0.1); transform: translateY(-2px); }
+
+    .pi-folder { font-family: 'JetBrains Mono', monospace; background: rgba(0,0,0,0.2); padding: 24px; border-radius: var(--radius-sm); line-height: 2; font-size: 14px; border: 1px solid var(--card-border); }
+    .pi-folder .folder-color { color: var(--pi-gold); }
+    .pi-folder .file-color { color: var(--pi-secondary); }
+
+    .pi-screenshots { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .pi-screenshot-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); overflow: hidden; }
+    .pi-screenshot-card .img-placeholder { height: 200px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(6,182,212,0.1)); color: var(--text-muted); font-size: 14px; }
+    .pi-screenshot-card p { padding: 16px; text-align: center; font-size: 14px; color: var(--text-secondary); font-weight: 500; }
+
+    .pi-obj { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+    .pi-obj-item { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 20px; text-align: center; transition: var(--transition); }
+    .pi-obj-item:hover { border-color: var(--pi-primary); transform: translateY(-3px); }
+    .pi-obj-item .icon { font-size: 28px; margin-bottom: 8px; }
+    .pi-obj-item p { font-size: 14px; color: var(--text-secondary); font-weight: 500; }
+
+    .pi-gh-link { display: inline-flex; align-items: center; gap: 12px; padding: 16px 32px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); color: var(--text-primary); font-weight: 600; transition: var(--transition); font-size: 15px; }
+    .pi-gh-link:hover { border-color: var(--pi-primary); background: rgba(139,92,246,0.1); transform: translateY(-2px); }
+
+    .pi-declaration { background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(6,182,212,0.05)); border: 1px solid rgba(139,92,246,0.2); border-radius: var(--radius); padding: 40px; text-align: center; }
+    .pi-declaration p { color: var(--text-secondary); max-width: 700px; margin: 0 auto; }
+    .pi-declaration .sign { margin-top: 24px; font-family: 'Space Grotesk', sans-serif; font-size: 18px; color: var(--pi-primary); font-weight: 600; }
+
+    .pi-thankyou { text-align: center; padding: 100px 24px; }
+    .pi-thankyou h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 16px; }
+    .pi-thankyou h2 span { background: linear-gradient(135deg, var(--pi-primary), var(--pi-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .pi-thankyou p { color: var(--text-muted); }
+    .pi-thankyou .team-name { margin-top: 32px; padding: 16px 32px; border-top: 1px solid var(--card-border); display: inline-block; }
+
+    .pi-nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: var(--nav-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass-border); }
+    .pi-nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; max-width: 1200px; margin: 0 auto; }
+    .pi-nav-logo { display: flex; align-items: center; gap: 10px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; }
+    .pi-nav-logo .logo-mark { width: 32px; height: 32px; border-radius: 8px; background: var(--gradient-1); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: #fff; }
+    .pi-nav-links { display: flex; align-items: center; gap: 24px; }
+    .pi-nav-links a { font-size: 14px; font-weight: 500; color: var(--text-secondary); transition: var(--transition); }
+    .pi-nav-links a:hover { color: var(--pi-primary); }
+    .pi-nav-links .back-link { display: flex; align-items: center; gap: 6px; padding: 8px 18px; border-radius: 50px; background: var(--gradient-1); color: #fff !important; font-weight: 600; font-size: 13px; }
+
+    .pi-challenges { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .pi-challenge-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 20px; }
+    .pi-challenge-card h4 { color: var(--pi-accent); margin-bottom: 8px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+    .pi-challenge-card p { color: var(--text-secondary); font-size: 14px; }
+
+    .pi-outcomes { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+    .pi-outcomes span { padding: 10px 16px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-sm); font-size: 13px; color: var(--text-secondary); text-align: center; font-weight: 500; transition: var(--transition); }
+    .pi-outcomes span:hover { border-color: var(--pi-primary); background: rgba(139,92,246,0.05); }
+
+    .pi-future { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+    .pi-future span { padding: 10px 16px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-sm); font-size: 13px; color: var(--text-secondary); text-align: center; font-weight: 500; transition: var(--transition); }
+    .pi-future span:hover { border-color: var(--pi-primary); background: rgba(139,92,246,0.05); }
+
+    .pi-contrib { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+    .pi-contrib-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 24px; transition: var(--transition); }
+    .pi-contrib-card:hover { border-color: var(--pi-primary); }
+    .pi-contrib-card h4 { font-family: 'Space Grotesk', sans-serif; color: var(--pi-primary); margin-bottom: 12px; }
+    .pi-contrib-card ul { list-style: none; }
+    .pi-contrib-card ul li { color: var(--text-secondary); font-size: 14px; padding: 4px 0; display: flex; align-items: center; gap: 8px; }
+    .pi-contrib-card ul li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--pi-secondary); flex-shrink: 0; }
+
+    @media (max-width: 768px) {
+      .pi-grid-2, .pi-grid-3, .pi-challenges, .pi-screenshots { grid-template-columns: 1fr; }
+      .pi-list, .pi-outcomes, .pi-future { grid-template-columns: 1fr; }
+      .pi-nav-links { gap: 12px; }
+      .pi-nav-links a:not(.back-link) { display: none; }
+      .pi-hero-meta { flex-direction: column; align-items: center; gap: 12px; }
+      .pi-contrib { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .pi-section { padding: 50px 0; }
+      .pi-card { padding: 20px; }
+      .pi-obj { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="pi-nav">
+    <div class="pi-nav-inner">
+      <a href="index.html" class="pi-nav-logo">
+        <span class="logo-mark">TH</span>
+        <span>TechHire</span>
+      </a>
+      <div class="pi-nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="index.html" class="back-link">Back to Site</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="pi-hero">
+    <div class="pi-hero-content">
+      <div class="pi-hero-badge">Frontend Web Development Competition 2026</div>
+      <h1>Project <span>Information</span></h1>
+      <p>A complete documentation of the TechHire IT Solutions website — built for the Frontend Web Development Competition 2026 organized by Destination Career.</p>
+      <div class="pi-hero-meta">
+        <span>TechHire IT Solutions</span>
+        <span>IT Company Website</span>
+        <span>Rajeshwari S.</span>
+        <span>SEA College of Engineering</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="pi-section">
+    <div class="pi-container">
+      <div class="pi-section-title"><span class="num">01</span> Project Overview</div>
+      <div class="pi-card">
+        <h3>Project Title</h3>
+        <div class="pi-blockquote">TechHire IT Solutions — Empowering Careers, Building Futures</div>
+      </div>
+      <div class="pi-grid-2">
+        <div class="pi-card">
+          <h3>Website Category</h3>
+          <p>IT Company / Career Placement Website</p>
+        </div>
+        <div class="pi-card">
+          <h3>Team Name</h3>
+          <p>Rajeshwari S. (Individual)</p>
+        </div>
+      </div>
+      <div class="pi-card">
+        <h3>About the Developer</h3>
+        <p>Final Year ISE student at SEA College of Engineering and Technology, passionate about frontend development, UI/UX design, and building real-world web solutions that make an impact.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pi-section">
+    <div class="pi-container">
+      <div class="pi-section-title"><span class="num">02</span> Why We Chose This Project</div>
+      <div class="pi-card">
+        <p>This project was selected because IT recruitment and career placement platforms are at the heart of the modern tech ecosystem. Building a professional IT company website allowed the application of advanced frontend concepts — responsive layouts, interactive dashboards, animated stats, dark/light theming, and real-world form handling — while addressing a genuine industry need. The goal was to create a visually stunning, corporate-level presence that bridges the gap between talent and opportunity.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pi-section">
+    <div class="pi-container">
+      <div class="pi-section-title"><span class="num">03</span> Project Description</div>
+      <div class="pi-card">
+        <p>TechHire IT Solutions is a fully responsive, corporate-level IT company website developed using only HTML, CSS, and JavaScript. The website presents a modern, professional brand identity with 18+ immersive sections including a dynamic hero with live placement dashboard, services with image-backed cards, animated stats counters, skills progress bars, team profiles, a video showcase, job listings with category filtering, a testimonials carousel, contact form with validation, newsletter signup, partner logo bar, global office cards, a live impact dashboard with animated metrics, a company culture gallery, a timeline of excellence, and a polished footer with particles and wave dividers.</p>
+        <p style="margin-top:12px">The design employs a vibrant purple-cyan gradient theme with glassmorphism cards, smooth scroll-triggered animations, a custom cursor with blur trail, dark/light theme toggle with localStorage persistence, canvas-based particle network, and full mobile/tablet/desktop responsiveness.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pi-section">
+    <div class="pi-container">
+      <div class="pi-section-title"><span class="num">04</span> Objectives</div>
+      <div class="pi-obj">
+        <div class="pi-obj-item"><div class="icon">&#9745;</div><p>Build a responsive website</p></div>
+        <div class="pi-obj-item"><div class="icon">&#9733;</div><p>Improve UI/UX design</p></div>
+        <div class="pi-obj-item"><div class="icon">&#9881;</div><p>Practice JavaScript concepts</p></div>
+        <div class="pi-obj-item"><div class="icon">&#128187;</div><p>Learn responsive web design</p></div>
+        <div class="pi-obj-item"><div class="icon">&#128279;</div><p>Deploy the project online</p></div>
+        <div class="pi-obj-item"><div class="icon">&#128200;</div><p>Build a corporate brand presence</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pi-section">
+    <div class="pi-container">
+      <div class="pi-section-title"><span class="num">05</span> Features</div>
+      <div class="pi-grid-2">
+        <div class="pi-card"><p>Responsive Design (Mobile, Tablet, Desktop)</p></div>
+        <div class="pi-card"><p>Interactive Navigation with Active Highlighting</p></div>
+        <div class="pi-card"><p>Hero Section with Live Dashboard Mockup</p></div>
+        <div class="pi-card"><p>Service Cards with Image Backgrounds</p></div>
+        <div class="pi-card"><p>Animated Stats Counters</p></div>
+        <div class="pi-card"><p>Skills Progress Bars with Percentage Counters</p></div>
+        <div class="pi-card"><p>Job Listings with Category Filtering</p></div>
+        <div class="pi-card"><p>Testimonials Carousel with Touch Support</p></div>
+        <div class="pi-card"><p>Contact Form with Validation</p></div>
+        <div class="pi-card"><p>Dark/Light Theme Toggle with localStorage</p></div>
+        <div class="pi-card"><p>Custom Cursor with Blur Trail</p></div>
+        <div class="pi-card"><p>Canvas Particle Network Animation</p></div>
+        <div class="pi-card"><p>Loader Animation with Progress Bar</p></div>
+        <div class="pi-card"><p>Smooth Scrolling and Scroll Animations</p></div>
+        <div class="pi-card"><p>Newsletter Signup with Animated Border</p></div>
+        <div class="pi-card"><p>Live Impact Dashboard with Animated Metrics</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pi-section">
+    <div class="pi-container">
+      <div class="pi-section-title"><span class="num">06</span> Technology Stack</div>
+      <div class="pi-card">
+        <h3>Frontend</h3>
+        <div class="pi-tech">
+          <span>HTML5</span>
+          <span>CSS3</span>
+          <span>JavaScript (Vanilla)</span>
+        </div>
+      </div>
+      <div class="pi-card">
+        <h3>Deployment</h3>
+        <div class="pi-tech">
+          <span>GitHub</span>
+        </div>
+      </div>
+      <div class="pi-card">
+        <h3>External Resources</h3>
+        <div class="pi-tech">
+          <span>Google Fonts</span>
+          <span>Unsplash Images</span>
+          <span>SimpleIcons</span>
+          <span>Clearbit Logo API</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pi-section">
+    <div class="pi-container">
+      <div class="pi-section-title"><span class="num">07</span> Folder Structure</div>
+      <div class="pi-folder">
+        <span class="folder-color">it-company/</span><br>
+        <span class="file-color">&#9500;&#9472;&#9472; index.html</span><br>
+        <span class="file-color">&#9500;&#9472;&#9472; about-project.html</span><br>
+        <span class="folder-color">&#9500;&#9472;&#9472; css/</span><br>
+        <span class="file-color">&#9474;   &#9500;&#9472;&#9472; style.css</span><br>
+        <span class="file-color">&#9474;   &#9500;&#9472;&#9472; animations.css</span><br>
+        <span class="file-color">&#9474;   &#9492;&#9472;&#9472; responsive.css</span><br>
+        <span class="folder-color">&#9500;&#9472;&#9472; js/</span><br>
+        <span class="file-color">&#9474;   &#9500;&#9472;&#9472; main.js</span><br>
+        <span class="file-color">&#9474;   &#9500;&#9472;&#9472; animations.js</span><br>
+        <span class="file-color">&#9474;   &#9492;&#9472;&#9472; particles.js</span><br>
+        <span class="folder-color">&#9492;&#9472;&#9472; assets/</span><br>
+        <span class="folder-color">    &#9500;&#9472;&#9472; images/</span><br>
+        <span class="folder-color">    &#9492;&#9472;&#9472; videos/</span><br>
+      </div>
+    </div>
+  </section>
+
+  <section class="pi-section">
+    <div class="pi-container">
+      <div class="pi-section-title"><span class="num">08</span> Team Details</div>
+      <div class="pi-table-wrap">
+        <table>
+          <thead>
+            <tr><th>Name</th><th>Roll No</th><th>Department</th><th>Year</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Rajeshwari S.</td><td>---</td><td>ISE</td><td>Final Year</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="pi-section">
+    <div class="pi-container">
+      <div class="pi-section-title"><span class="num">09</span> Contribution</div>
+      <div class="pi-grid-3">
+        <div class="pi-card">
+          <h3>Rajeshwari S.</h3>
+          <ul class="pi-list" style="display:block; grid-template-columns:1fr;">
+            <li style="display:flex; border:none; background:transparent; padding:6px 0;">Complete HTML Structure & All Sections</li>
+            <li style="display:flex; border:none; background:transparent; padding:6px 0;">CSS Styling & Theming (Dark/Light)</li>
+            <li style="display:flex; border:none; background:transparent; padding:6px 0;">JavaScript Functionality & Animations</li>
+            <li style="display:flex; border:none; background:transparent; padding:6px 0;">Responsive Design & Media Queries</li>
+            <li style="display:flex; border:none; background:transparent; padding:6px 0;">Custom Cursor, Particles & Loader</li>
+            <li style="display:flex; border:none; background:transparent; padding:6px 0;">GitHub Deployment & Documentation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pi-section">
+    <div class="pi-container">
+      <div class="pi-section-title"><span class="num">10</span> Challenges Faced</div>
+      <div class="pi-challenges">
+        <div class="pi-challenge-card">
+          <h4>Responsive Layout Complexity</h4>
+          <p>Ensuring all 18+ sections displayed perfectly across mobile, tablet, and desktop required extensive media query testing and layout adjustments.</p>
+        </div>
+        <div class="pi-challenge-card">
+          <h4>Custom Cursor Implementation</h4>
+          <p>Making a custom cursor with blur trail that worked smoothly across all interactive elements without breaking native click behavior.</p>
+        </div>
+        <div class="pi-challenge-card">
+          <h4>Scroll-Triggered Animations</h4>
+          <p>Implementing Intersection Observer for counters and reveal animations without any external libraries, ensuring performance across devices.</p>
+        </div>
+        <div class="pi-challenge-card">
+          <h4>Dark/Light Theme Consistency</h4>
+          <p>Ensuring every component had proper dark and light mode styling with smooth transitions and localStorage persistence.</p>
+        </div>
+        <div class="pi-challenge-card">
+          <h4>Particle Network Performance</h4>
+          <p>Optimizing the canvas particle system to run at 60fps while scaling dynamically based on viewport size.</p>
+        </div>
+        <div class="pi-challenge-card">
+          <h4>Image Loading & Fallbacks</h4>
+          <p>Managing external image URLs (Unsplash, SimpleIcons, Clearbit) with graceful fallbacks and loading states.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pi-section">
+    <div class="pi-container">
+      <div class="pi-section-title"><span class="num">11</span> Learning Outcomes</div>
+      <div class="pi-outcomes">
+        <span>HTML Page Structure</span>
+        <span>CSS Flexbox & Grid</span>
+        <span>CSS Custom Properties</span>
+        <span>Responsive Design</span>
+        <span>Media Queries</span>
+        <span>JavaScript DOM Manipulation</span>
+        <span>Event Handling</span>
+        <span>Form Validation</span>
+        <span>Local Storage API</span>
+        <span>Intersection Observer API</span>
+        <span>Canvas API (Particles)</span>
+        <span>CSS Animations & Keyframes</span>
+        <span>Dark/Light Theme Toggle</span>
+        <span>Git & GitHub Management</span>
+        <span>Website Deployment</span>
+        <span>UI/UX Design Principles</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="pi-section">
+    <div class="pi-container">
+      <div class="pi-section-title"><span class="num">12</span> Future Improvements</div>
+      <div class="pi-future">
+        <span>User Login / Authentication</span>
+        <span>Database Integration</span>
+        <span>Job Application Tracking</span>
+        <span>Admin Dashboard</span>
+        <span>Email Notifications</span>
+        <span>AI-Powered Job Matching</span>
+        <span>Live Chat Support</span>
+        <span>Blog / Resources Section</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="pi-section">
+    <div class="pi-container">
+      <div class="pi-section-title"><span class="num">13</span> GitHub Repository</div>
+      <div class="pi-card" style="text-align:center;">
+        <a href="https://github.com/ammua6574-svg/R" target="_blank" class="pi-gh-link">
+          https://github.com/ammua6574-svg/R
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="pi-section">
+    <div class="pi-container">
+      <div class="pi-section-title"><span class="num">14</span> Live Website</div>
+      <div class="pi-card" style="text-align:center;">
+        <a href="#" target="_blank" class="pi-gh-link">
+          https://techhire-it-solutions.vercel.app
+        </a>
+        <p style="margin-top:12px; color:var(--text-muted); font-size:14px;">(Deployment link to be added)</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pi-section">
+    <div class="pi-container">
+      <div class="pi-section-title"><span class="num">15</span> Screenshots</div>
+      <p style="margin-bottom:24px; color:var(--text-muted); font-size:14px;">Below are screenshot placeholders for the key pages of the website.</p>
+      <div class="pi-screenshots">
+        <div class="pi-screenshot-card">
+          <div class="img-placeholder">Hero Section Preview</div>
+          <p>Home Page - Hero with Dashboard</p>
+        </div>
+        <div class="pi-screenshot-card">
+          <div class="img-placeholder">Services Section Preview</div>
+          <p>Services & About Page</p>
+        </div>
+        <div class="pi-screenshot-card">
+          <div class="img-placeholder">Team & Jobs Preview</div>
+          <p>Team & Job Listings</p>
+        </div>
+        <div class="pi-screenshot-card">
+          <div class="img-placeholder">Mobile View Preview</div>
+          <p>Mobile Responsive Layout</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pi-section">
+    <div class="pi-container">
+      <div class="pi-section-title"><span class="num">16</span> Feedback on Training</div>
+      <div class="pi-card">
+        <p>The Frontend Web Development Training provided a strong foundation in HTML, CSS, and JavaScript. The hands-on sessions, practical assignments, and real-world examples helped in understanding how to build responsive and interactive websites from scratch. The training significantly improved confidence in frontend development concepts including DOM manipulation, event handling, form validation, CSS animations, and responsive design using media queries. The guidance on Git, GitHub, and deployment workflows was especially valuable for completing and publishing this project. Grateful for the support provided throughout the program, and eager to continue learning advanced web technologies.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pi-section">
+    <div class="pi-container">
+      <div class="pi-section-title"><span class="num">17</span> Declaration</div>
+      <div class="pi-declaration">
+        <p>I hereby declare that this project was developed by me specifically for the <strong>Frontend Web Development Competition 2026</strong>. The work submitted is original, and no complete project or template has been copied from online sources. Any external resources used (such as icons, fonts, or images) have been appropriately acknowledged.</p>
+        <div class="sign">Rajeshwari S.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pi-section" style="padding-bottom:0;">
+    <div class="pi-container">
+      <div class="pi-thankyou">
+        <h2>Thank <span>You</span></h2>
+        <p>Developed for the Frontend Web Development Competition 2026</p>
+        <div class="team-name">
+          <p><strong>Rajeshwari S.</strong><br>Final Year ISE<br>SEA College of Engineering and Technology</p>
+        </div>
+        <p style="margin-top:24px; font-size:13px; color:var(--text-muted);">Organized by Destination Career</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+      const links = document.querySelectorAll('a[href^="#"], a[href*="index.html"]');
+      links.forEach(a => {
+        a.addEventListener('click', e => {
+          const href = a.getAttribute('href');
+          if (href && href.includes('#') && !href.startsWith('http')) {
+            const id = href.split('#')[1];
+            if (id && document.getElementById(id)) {
+              e.preventDefault();
+              document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
